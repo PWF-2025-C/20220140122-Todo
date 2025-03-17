@@ -1,3 +1,18 @@
+## INSTALL BREEZE
+
+<img src="https://github.com/user-attachments/assets/ef23fe96-ee5c-4bf9-abd0-91f7b995ec35" width="300">
+<img src="https://github.com/user-attachments/assets/8f7a69e9-6f8d-46b9-b34c-5b86bca2857a" width="300">
+<img src="https://github.com/user-attachments/assets/ae3e726d-770e-4abf-b88b-472e427f0dde" width="300">
+<img src="https://github.com/user-attachments/assets/d1bdc9ef-da65-4694-a3ed-52ecfcc8bc47" width="300">
+<img src="https://github.com/user-attachments/assets/aeb8b7cb-0de9-4df0-a204-d7ab981522c9" width="300">
+<img src="https://github.com/user-attachments/assets/03f6447d-a936-4eb1-a40b-b10bf04fb3b8" width="300">
+<img src="https://github.com/user-attachments/assets/a9a8d9ad-8541-4550-825f-7269096176da" width="300">
+<img src="https://github.com/user-attachments/assets/654e9cc8-1982-46c8-a1a9-001ff940c140" width="300">
+<img src="https://github.com/user-attachments/assets/974f5678-2b77-475b-a7fd-f90f4f1798ed" width="300">
+<img src="https://github.com/user-attachments/assets/fe7be02b-f19b-4b87-b250-30afd70a03dc" width="300">
+<img src="https://github.com/user-attachments/assets/bf800204-e37a-4ed1-a095-f21b479a72ed" width="300">
+<img src="https://github.com/user-attachments/assets/7c20127d-5a8c-408b-b706-03c58b190313" width="300">
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
