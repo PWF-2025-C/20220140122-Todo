@@ -8,11 +8,34 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function view(){
-        //  $todos =Todo::where('user_id', Auth::id())->get();
-        $todos = Todo::all();
-        dd($todos);
-    return view('todo.index'); 
+    public function index(){
+        $todos = Todo::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        //$todos = Todo::all();
+        //dd($todos);
+    return view('todo.index', compact('todos')); 
+    }
+    public function create()
+    {
+        return view('todo.create');
+    }
+
+
+    public function edit()
+    {
+        return view('todo.edit');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
+
+        $todo = Todo::create([
+            'title' => ucfirst($request->title),
+            'user_id' => Auth::id(),
+        ]);
+        return redirect()->route('todo.index')->with('success', 'Todo Created Successfully');
     }
 
 }
