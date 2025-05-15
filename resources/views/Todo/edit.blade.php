@@ -24,6 +24,23 @@
                 />
                 <x-input-error class="mt-2" :messages="$errors->get('title')" />
             </div>
+            {{-- Category Dropdown --}}
+            <div class="mb-6">
+                        <x-input-label for="category_id" :value="('Category')" />
+                        <select
+                            id="category_id"
+                            name="category_id"
+                            class="block w-full mt-1 rounded-md border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-white focus:ring focus:ring-indigo-500"
+                        >
+                            <option value="">-- Choose Category --</option>
+                            @foreach ($category as $category)
+                                <option value="{{ $category->id }}" @if ($category->id == $todo->category_id) selected @endif>
+                                    {{ $category->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <x-input-error class="mt-2" :messages="$errors->get('category_id')" />
+                    </div>'
 
             <div class="flex items-center gap-4">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>

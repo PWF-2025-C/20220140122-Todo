@@ -1,4 +1,4 @@
-<a href="{{ route('todo.create') }}"
+<a href="{{ route('category.create') }}"
    class="inline-flex items-center px-4 py-2 
           bg-white hover:bg-gray-100 
           text-black dark:text-black 

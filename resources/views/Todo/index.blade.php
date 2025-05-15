@@ -9,11 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
             {{-- Create Button + Flash Message --}}
             <div class="flex justify-between items-center px-6">
-                <form action="{{ route('todo.create') }}" method="GET">
-                    <x-primary-button>
-                        Create Todo
-                    </x-primary-button>
-                </form>
+                <x-create-button href="{{ route('todo.create') }}">
+                    Create Todo
+                </x-create-button>
                 @if (session('success'))
                     <div class="text-green-600 dark:text-green-400 text-sm font-semibold px-4 py-2">
                         {{ session('success') }}
@@ -26,11 +24,12 @@
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
+                            <>
                                 <th scope="col" class="px-6 py-3">Title</th>
+                                <th scope="col" class="px-6 py-3 text-center">Category</th>
                                 <th scope="col" class="px-6 py-3 text-center">Status</th>
                                 <th scope="col" class="px-6 py-3 text-center">Action</th>
-                            </tr>
+                            </>
                         </thead>
                         <tbody>
                             @forelse ($todos as $data)
@@ -39,6 +38,9 @@
                                         <a href="{{ route('todo.edit', $data) }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
                                             {{ $data->title }}
                                         </a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $data->category->title ?? '-' }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex justify-center">
