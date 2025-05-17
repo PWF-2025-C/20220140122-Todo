@@ -10,6 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'user_id'];
+    protected $with = ['todos'];
 
     public function todos()
     {
