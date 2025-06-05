@@ -3,15 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
@@ -28,8 +27,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_admin',
     ];
 
-    public function todo(): BelongsTo{
-        return $this->belongsTo(related:User::class);
+    public function todo(): BelongsTo
+    {
+        return $this->belongsTo(related: User::class);
+    }
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
     }
 
     /**
@@ -41,10 +46,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
-    public function todos()
-{
-    return $this->hasMany(Todo::class);
-}
 
     /**
      * Get the attributes that should be cast.
@@ -56,6 +57,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+        ];
+    }
+
+    // JWT Implementation
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            'isAdmin' => $this->is_admin,
         ];
     }
 }
