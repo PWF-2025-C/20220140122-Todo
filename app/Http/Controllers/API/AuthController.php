@@ -6,12 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use Symfony\Component\HttpFoundation\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-    /**
-     * Login user dengan email dan password.
-     */
     public function login(Request $request)
     {
         $data = $request->validate([
@@ -54,14 +53,33 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * Logout user yang sedang login.
-     */
-    public function logout()
-    {
-        Auth::guard('api')->logout();
-        return response()->json([
-            'message' => 'Logout berhasil',
-        ], 200);
-    }
+    #[Response(
+        status: 200,
+        content: [
+            'status_code' => 200,
+            'message' => 'Login berhasil, Token telah dihapus.'
+        ]
+    )]
+    #[Response(
+        status: 500,
+        content:[
+            'status_code' => 500,
+            'message' => 'Gagal logout, terjadi kesalahan'
+        ]
+    )]
+        public function logout(Request $request)
+        {
+            try {
+                JWTAuth::invalidate(JWTAuth::getToken());
+                return response()->json([
+                    'status_code' => 200,
+                    'message' => 'Logout Berhasil. Token telah dihapus.',
+                ], 200);
+            } catch (Exception $e) {
+                return response()->json([
+                    'status_code' => 500,
+                    'message' => 'Gagal logout, terjadi kesalahan.',
+                ], 500);
+            }
+        }
 }
